@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Really unbl0ck3d</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:Arial; background:#111; color:#0f0; padding:20px; }
+    h1 { text-align:center; color:#0f0; text-shadow:0 0 10px #0f0; margin-bottom:10px; }
+    .container { max-width:1200px; margin:auto; }
+    .input { display:flex; gap:10px; margin:20px 0; }
+    input { flex:1; padding:12px; background:#222; border:1px solid #0f0; color:#0f0; border-radius:8px; }
+    button { padding:12px 20px; background:#0f0; color:#000; border:none; border-radius:8px; font-weight:bold; cursor:pointer; }
+    button:hover { background:#0c0; }
+    iframe { width:100%; height:70vh; border:1px solid #0f0; border-radius:8px; background:#fff; }
+    .games { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:15px; margin:20px 0; }
+    .game { background:#222; padding:15px; border-radius:8px; text-align:center; border:1px solid #0f0; }
+    .game button { width:100%; margin-top:10px; }
+    .evade { margin-top:20px; background:#222; padding:15px; border-radius:8px; }
+    .evade label { display:block; margin:8px 0; }
+    .panic { color:#f00; font-size:12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Really unbl0ck3d</h1>
+    <p style="text-align:center;color:#888;">Unblock ANY Game — No Install, No Login</p>
+
+    <!-- GAMES GRID -->
+    <div class="games">
+      <div class="game"><h3>Krunker</h3><button onclick="go('https://krunker.io')">PLAY</button></div>
+      <div class="game"><h3>Shell Shockers</h3><button onclick="go('https://shellshock.io')">PLAY</button></div>
+      <div class="game"><h3>1v1.LOL</h3><button onclick="go('https://1v1.lol')">PLAY</button></div>
+      <div class="game"><h3>Roblox</h3><button onclick="go('https://roblox.com')">PLAY</button></div>
+      <div class="game"><h3>Diep.io</h3><button onclick="go('https://diep.io')">PLAY</button></div>
+      <div class="game"><h3>More...</h3><button onclick="document.getElementById('url').focus()">Custom</button></div>
+    </div>
+
+    <!-- PROXY INPUT -->
+    <div class="input">
+      <input type="text" id="url" placeholder="https://blocked-site.com" />
+      <button onclick="go(document.getElementById('url').value)">UNBL0CK</button>
+    </div>
+    <iframe id="frame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"></iframe>
+
+    <!-- EVASION TOOLS -->
+    <div class="evade">
+      <label><input type="checkbox" onchange="this.checked?document.title='Google Docs':document.title='Really unbl0ck3d'"> Disguise Tab</label>
+      <label><input type="checkbox" onchange="window.onbeforeunload=this.checked?()=>confirm('Leave?'):null"> Anti-Close</label>
+      <label>Panic Key: <span class="panic">ESC → Khan Academy</span></label>
+      <button style="background:#f00;color:#fff;width:100%;margin-top:10px;" onclick="frame.src='about:blank';url.value=''">CLEAR</button>
+    </div>
+  </div>
+
+  <script>
+    // ESC PANIC
+    document.addEventListener('keydown', e => e.key === 'Escape' && (location.href = 'https://khanacademy.org'));
+
+    // PROXY VIA PUBLIC CORS SERVER (FREE, WORKS EVERYWHERE)
+    const proxy = 'https://api.allorigins.win/raw?url=';
+
+    function go(url) {
+      if (!url) return;
+      if (!url.startsWith('http')) url = 'https://' + url;
+      const frame = document.getElementById('frame');
+      frame.src = proxy + encodeURIComponent(url);
+      document.getElementById('url').value = url;
+    }
+  </script>
+</body>
+</html>
