@@ -1,0 +1,15 @@
+{
+  "name": "really-unbl0ck3d",
+  "version": "1.0.0",
+  "description": "Simple web-proxy with a cool UI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "You",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "http-proxy-middleware": "^3.0.0"
+  }
+}
